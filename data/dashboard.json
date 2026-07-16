@@ -1,0 +1,34 @@
+{
+  "categories": [
+    {
+      "id": "vocab",
+      "title": "Vocabulary & Spelling",
+      "description": "Synonyms, definitions & tricky spellings",
+      "time_limit_seconds": 180,
+      "num_questions_to_pick": 10,
+      "file": "vocabulary",
+      "icon": "VOC",
+      "iconClass": "icon-blue"
+    },
+    {
+      "id": "collocations",
+      "title": "Academic Collocations",
+      "description": "Natural word pairings for essays",
+      "time_limit_seconds": 180,
+      "num_questions_to_pick": 10,
+      "file": "collocations",
+      "icon": "COL",
+      "iconClass": "icon-turq"
+    },
+    {
+      "id": "category7",
+      "title": "Uh + Uhm Eliminators",
+      "description": "Sentence joining & micro-summaries",
+      "time_limit_seconds": 300,
+      "num_questions_to_pick": 6,
+      "file": "category7",
+      "icon": "CAT7",
+      "iconClass": "icon-ink"
+    }
+  ]
+}
