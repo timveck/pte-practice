@@ -768,7 +768,7 @@ function renderDashboard() {
   } else if (session.started) {
     bannerContainer.innerHTML = `
       <div class="lock-banner" style="background:var(--ice-blue); border-color:var(--pearson-blue);">
-        <p>⏱️ Session in progress — <strong>${formatTime(session.remaining)}</strong> remaining</p>
+        <p>⏱️ Session in progress — <strong id="dashboard-session-remaining">${formatTime(session.remaining)}</strong> remaining</p>
         <button class="btn btn-sm btn-outline" id="view-session-summary-btn" style="background:var(--white);">View session summary</button>
       </div>
     `;
@@ -1363,6 +1363,12 @@ async function init() {
         app.session.remaining--;
         updateSessionTimerDisplay();
         saveSessionState(app.session);
+
+        const dashboardRemainingEl = document.getElementById("dashboard-session-remaining");
+        if (dashboardRemainingEl) {
+          dashboardRemainingEl.textContent = formatTime(app.session.remaining);
+        }
+
         if (app.session.remaining <= 0) {
           app.session.locked = true;
           saveSessionState(app.session);
