@@ -165,6 +165,21 @@
 
   .welcome h1 { margin: 0 0 6px; font-size: 27.5px; }
   .welcome p { margin: 0; font-size: 16px; color: #e3f2f5; max-width: 520px; }
+  .welcome-doc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 6px;
+    font-size: 14.5px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .welcome-doc-link:hover { background: rgba(255, 255, 255, 0.2); text-decoration: none; }
+  .welcome-doc-link strong { font-weight: 700; }
 
   /* ---------- Locked banner ---------- */
   .lock-banner {
@@ -450,6 +465,7 @@
     <div class="welcome">
       <h1>Build your PTE skills</h1>
       <p>Pick a category below. Each session is timed – you have <strong>15 minutes</strong> total for your warm‑up, just like the real test.</p>
+      <a href="Doc_Dashboard.html" class="welcome-doc-link">📚 <span>Check out the <strong>Documentation</strong> — vocab &amp; collocation lists, reading drills, and PTE / high-score guides</span></a>
     </div>
 
     <div id="lock-banner-container"></div>
@@ -768,7 +784,7 @@ function renderDashboard() {
   } else if (session.started) {
     bannerContainer.innerHTML = `
       <div class="lock-banner" style="background:var(--ice-blue); border-color:var(--pearson-blue);">
-        <p>⏱️ Session in progress — <strong id="dashboard-session-remaining">${formatTime(session.remaining)}</strong> remaining</p>
+        <p>⏱️ Session in progress — <strong>${formatTime(session.remaining)}</strong> remaining</p>
         <button class="btn btn-sm btn-outline" id="view-session-summary-btn" style="background:var(--white);">View session summary</button>
       </div>
     `;
@@ -1363,12 +1379,6 @@ async function init() {
         app.session.remaining--;
         updateSessionTimerDisplay();
         saveSessionState(app.session);
-
-        const dashboardRemainingEl = document.getElementById("dashboard-session-remaining");
-        if (dashboardRemainingEl) {
-          dashboardRemainingEl.textContent = formatTime(app.session.remaining);
-        }
-
         if (app.session.remaining <= 0) {
           app.session.locked = true;
           saveSessionState(app.session);
